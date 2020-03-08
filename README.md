@@ -8,7 +8,7 @@ class to aggregate and gather basic stats on the invoices processed.
 
 Install from requirements.txt
 
-##Usage
+## Usage
 Run program for command line in root folder of application:
 ````
 python [run.py]
