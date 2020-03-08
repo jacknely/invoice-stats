@@ -26,7 +26,7 @@ def test_input_4(mocker, capsys):
     run.main()
     captured = capsys.readouterr()
     captured = captured.out.split("\n")
-    assert captured[-2] == "The median is: 70.0"
+    assert captured[-2] == "The median is: 70.00"
 
 
 def test_input_5(mocker, capsys):
