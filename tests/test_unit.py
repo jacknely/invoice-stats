@@ -29,7 +29,7 @@ class TestInvoiceStats:
         for i in range(0, 100000):
             number = random.uniform(0, 10000)
             number = round(number, 2)
-            split_number = str(number).split(".")
+            split_number = str(number).split(".")  # need to remove all XX.00 values as they round to XX.0
             if len(split_number[1]) < 2:
                 number = number + 0.12
             number = round(number, 2)  # had to round again as addition added some tiny error
@@ -94,6 +94,13 @@ class TestInvoiceStatsExceptions:
         with pytest.raises(ValueError) as error:
             self.test_invoice_data.add_invoice(30000000.01)
         assert '30000000.01 is not a valid input. Invoice ' \
+               'amount must be between 0 and 200,000 USD' == str(error.value)
+
+    def test_values_4(self):
+        """ test for adding single invoice to system """
+        with pytest.raises(ValueError) as error:
+            self.test_invoice_data.add_invoice(-34.01)
+        assert '-34.01 is not a valid input. Invoice ' \
                'amount must be between 0 and 200,000 USD' == str(error.value)
 
 
