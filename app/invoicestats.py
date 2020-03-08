@@ -37,7 +37,6 @@ class InvoiceStats:
         """ prints the median of all stored invoice amounts """
         count = len(cls.invoices)
         cls.invoices.sort()
-
         if count % 2 == 0:
             median1 = cls.invoices[count // 2]
             median2 = cls.invoices[count // 2 - 1]
@@ -68,10 +67,10 @@ class InvoiceStats:
     def check_format(number: str):
         """ validates user input """
         split_number = str(number).split(".")
-        if len(split_number) < 2:
+        if len(split_number) < 2:  # check for decimal
             raise ValueError(
                 f'{number} is not a valid input. Input should be to two decimal places.')
-        elif len(split_number[1]) != 2:
+        elif len(split_number[1]) != 2:  # check for 2 significant figures
             raise ValueError(
                 f'{number} is not a valid input. Input should be to two decimal places.')
         else:
@@ -81,6 +80,9 @@ class InvoiceStats:
     def check_value(number: float):
         """ validates user input """
         if 200000 < number:
+            raise ValueError(
+                f'{number} is not a valid input. Invoice amount must be between 0 and 200,000 USD')
+        if number < 0:
             raise ValueError(
                 f'{number} is not a valid input. Invoice amount must be between 0 and 200,000 USD')
         return number
