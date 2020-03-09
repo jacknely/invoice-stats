@@ -14,3 +14,5 @@ Run program for command line in root folder of application:
 python [run.py]
 ````
 
+
+## Add sections on your approach, why you chose this method, and what could be improved
