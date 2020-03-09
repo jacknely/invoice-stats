@@ -12,7 +12,8 @@ class TestInvoiceStats:
 
     def teardown_method(self):
         self.test_invoice_data.invoices[:] = []
-
+        
+    # move class variables to top of class
     test_invoices = [('45.67', [45.67]),
                      ('56.24', [56.24]),
                      (56.32, [56.32])]
@@ -24,6 +25,8 @@ class TestInvoiceStats:
         assert self.test_invoice_data.invoices == invoice_result
 
     def test_add_invoices(self):
+        # I think this is unnecessarily complicated and usally not best practice to use random numbers in tests.
+        
         """ test for 100,000 random invoice inputs """
         test_large_invoice = []
         for i in range(0, 100000):
@@ -45,6 +48,8 @@ class TestInvoiceStats:
         self.test_invoice_data.clear_invoices()
         assert self.test_invoice_data.invoices == []
 
+        
+    # Add this to paramertise, not a class variable. Same with mean   
     test_mean = [('2.00, 3.00, 4.00', 3.00),
                 ('4.00, 1.00', 2.50),
                 ('5.00, 1.00, 1.00, 100.00', 26.75)]
@@ -65,7 +70,7 @@ class TestInvoiceStats:
         self.test_invoice_data.add_invoices(invoice)
         assert self.test_invoice_data.get_medium() == medium
 
-
+# I wouldnt have a seperate class for exceptions unless your code is a seperate exception class
 class TestInvoiceStatsExceptions:
 
     def setup(self):
@@ -74,7 +79,8 @@ class TestInvoiceStatsExceptions:
 
     def teardown_method(self):
         self.test_invoice_data.invoices[:] = []
-
+    
+    # these test names suck. Use descriptive names like test_input_incorrect_decimal
     def test_value_1(self):
         """ test for adding single invoice to system """
         with pytest.raises(ValueError) as error:
