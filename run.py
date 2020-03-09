@@ -32,8 +32,7 @@ def main():
                 break
             else:
                 value = None
-            output = invoice_options.get(option)(value)
-            if output:
+            if output := invoice_options.get(option)(value)
                 print(output)
         except TypeError:
             print("Ensure you have entered a number between 1 and 7")
