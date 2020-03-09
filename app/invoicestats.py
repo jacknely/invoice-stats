@@ -3,7 +3,7 @@ import math
 
 class InvoiceStats:
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.invoices: list = []
 
     @property
@@ -27,7 +27,7 @@ class InvoiceStats:
 
         return self.invoices
 
-    def clear_invoices(self, *args):
+    def clear_invoices(self, *args) -> None:
         """ clear all stored invoices """
         self.invoices[:] = []
 
@@ -52,7 +52,7 @@ class InvoiceStats:
 
         return f"The mean is: {rounded_mean:.2f}"
 
-    def view_all(self, *args):
+    def view_all(self, *args) -> None:
         """ prints all stored invoice amounts """
         print("\nCurrent saved invoice amounts:")
         [print(f"  - {invoice:.2f} USD") for invoice in self.invoices]
