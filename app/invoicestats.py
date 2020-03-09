@@ -4,13 +4,13 @@ import math
 class InvoiceStats:
 
     def __init__(self):
-        self.invoices = []
+        self.invoices: list = []
 
     @property
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self.invoices)
 
-    def add_invoices(self, invoices):
+    def add_invoices(self, invoices: str) -> list:
         """ method to add multiple invoice amounts and print to screen """
         invoices = invoices.split(",")
         invoices = [self.check_format(invoice) for invoice in invoices]
@@ -19,7 +19,7 @@ class InvoiceStats:
 
         return self.invoices
 
-    def add_invoice(self, invoice):
+    def add_invoice(self, invoice: str) -> list:
         """ method to add single invoice amount and print to screen """
         invoice = self.check_format(invoice)
         invoice = self.check_value(invoice)
@@ -31,7 +31,7 @@ class InvoiceStats:
         """ clear all stored invoices """
         self.invoices[:] = []
 
-    def get_medium(self, *args):
+    def get_medium(self, *args) -> str:
         """ prints the median of all stored invoice amounts """
         self.invoices.sort()
         if self.__len__ % 2 == 0:
@@ -44,7 +44,7 @@ class InvoiceStats:
 
         return f"The median is: {rounded_median:.2f}"
 
-    def get_mean(self, *args):
+    def get_mean(self, *args) -> str:
         """ gets the mean of all stores invoice amounts """
         sum_values = sum(self.invoices)
         mean = sum_values / self.__len__
@@ -58,7 +58,7 @@ class InvoiceStats:
         [print(f"  - {invoice:.2f} USD") for invoice in self.invoices]
 
     @staticmethod
-    def check_format(number: str):
+    def check_format(number: str) -> float:
         """ validates user input """
         split_number = str(number).split(".")
         if len(split_number) < 2:  # check for decimal
@@ -71,7 +71,7 @@ class InvoiceStats:
             return float(number)
 
     @staticmethod
-    def check_value(number: float):
+    def check_value(number: float) -> float:
         """ validates user input """
         if 200000 < number:
             raise ValueError(
@@ -82,7 +82,7 @@ class InvoiceStats:
         return number
 
     @staticmethod
-    def round_down(n, decimals=0):
+    def round_down(n: float, decimals=0) -> float:
         """ method for rounding down to a given number of decimal places """
         multiplier = 10 ** decimals
         return math.floor(n * multiplier) / multiplier
