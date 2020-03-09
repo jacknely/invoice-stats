@@ -5,51 +5,33 @@ class InvoiceStats:
 
     def __init__(self):
         self.invoices = []
-    
+
+    @property
     def __len__(self):
         return len(self.invoices)
 
-    def invoice_options(self, option):
-        invoice_options = {
-            1: self.add_invoices(),
-            2: self.add_invoice(),
-            3: self.clear_invoices(),
-            4: self.get_medium(),
-            5: self.get_mean(),
-            6: self.view_all(),
-            7: exit()
-        }
-
-        return invoice_options.get(option, self.raise_non_valid_option())
-
-    def add_invoices(self):
+    def add_invoices(self, invoices):
         """ method to add multiple invoice amounts and print to screen """
-        invoices = self.get_user_input()
         invoices = invoices.split(",")
         invoices = [self.check_format(invoice) for invoice in invoices]
         invoices = [self.check_value(invoice) for invoice in invoices]
         self.invoices = self.invoices + invoices
-        print(self.invoices)
 
-        return True
+        return self.invoices
 
-    def add_invoice(self):
+    def add_invoice(self, invoice):
         """ method to add single invoice amount and print to screen """
-        value = self.get_user_input()
-        value = self.check_format(value)
-        value = self.check_value(value)
-        self.invoices = self.invoices + value
-        print(self.invoices)
+        invoice = self.check_format(invoice)
+        invoice = self.check_value(invoice)
+        self.invoices.append(invoice)
 
-        return True
+        return self.invoices
 
-    def clear_invoices(self):
+    def clear_invoices(self, *args):
         """ clear all stored invoices """
         self.invoices[:] = []
 
-        return True
-
-    def get_medium(self):
+    def get_medium(self, *args):
         """ prints the median of all stored invoice amounts """
         self.invoices.sort()
         if self.__len__ % 2 == 0:
@@ -60,24 +42,20 @@ class InvoiceStats:
             median = self.invoices[self.__len__ // 2]
         rounded_median = self.round_down(median, 2)
 
-        return rounded_median
+        return f"The median is: {rounded_median:.2f}"
 
-    def get_mean(self):
+    def get_mean(self, *args):
         """ gets the mean of all stores invoice amounts """
         sum_values = sum(self.invoices)
         mean = sum_values / self.__len__
         rounded_mean = self.round_down(mean, 2)
 
-        return rounded_mean
+        return f"The mean is: {rounded_mean:.2f}"
 
-    def view_all(self):
+    def view_all(self, *args):
         """ prints all stored invoice amounts """
         print("\nCurrent saved invoice amounts:")
-        [print(f"  - {invoice:.2f}") for invoice in self.invoices]
-
-    @staticmethod
-    def get_user_input():
-        return input("enter a value:")
+        [print(f"  - {invoice:.2f} USD") for invoice in self.invoices]
 
     @staticmethod
     def check_format(number: str):
@@ -97,10 +75,10 @@ class InvoiceStats:
         """ validates user input """
         if 200000 < number:
             raise ValueError(
-                f'{number} is not a valid input. Invoice amount must be between 0 and 200,000 USD')
+                f'{number} is not a valid input. Invoice amount must be less than 200,000 USD')
         if number < 0:
             raise ValueError(
-                f'{number} is not a valid input. Invoice amount must be between 0 and 200,000 USD')
+                f'{number} is not a valid input. Invoice amount must be more than 0 USD')
         return number
 
     @staticmethod
@@ -109,7 +87,4 @@ class InvoiceStats:
         multiplier = 10 ** decimals
         return math.floor(n * multiplier) / multiplier
 
-    @staticmethod
-    def raise_non_valid_option():
-        raise ValueError(
-            'Please select a option between 1 and 7.')
+

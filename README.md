@@ -9,10 +9,24 @@ class to aggregate and gather basic stats on the invoices processed.
 Install from requirements.txt
 
 ## Usage
-Run program for command line in root folder of application:
+Run program in command line at root folder of application:
 ````
-python [run.py]
+python run.py
 ````
+
+The following options will be displayed:
+
+````
+  1. Add Invoices (multiple comma separated)
+  2. Add Invoice (single)
+  3. Clear
+  4. Get Median
+  5. Get Mean
+  6. View all Invoices
+  7. Exit
+````
+
+
 
 
 ## Add sections on your approach, why you chose this method, and what could be improved
