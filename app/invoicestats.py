@@ -3,9 +3,13 @@ import math
 
 class InvoiceStats:
     invoices = []
-
+    
+    def __len__(self):
+        return len(self.invoices)
+     
+    # if you're gonna use typing than add the output   
     @classmethod
-    def add_invoices(cls, invoices: str):
+    def add_invoices(cls, invoices: str) -> Boolean:
         """ method to add multiple invoice amounts and print to screen """
         invoices = invoices.split(",")
         invoices = [cls.check_format(invoice) for invoice in invoices]
@@ -35,10 +39,11 @@ class InvoiceStats:
     @classmethod
     def get_medium(cls):
         """ prints the median of all stored invoice amounts """
-        count = len(cls.invoices)
+        # count is a shit name. anyway you should be using a dunder len on InvoiceStats.
+        
         cls.invoices.sort()
         if count % 2 == 0:
-            median1 = cls.invoices[count // 2]
+            median1 = cls.invoices[len(self) // 2]
             median2 = cls.invoices[count // 2 - 1]
             median = (median1 + median2) / 2
         else:

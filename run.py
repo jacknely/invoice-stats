@@ -37,6 +37,19 @@ def main():
                 break
             else:
                 print("Not a valid option, please enter a number between 1 and 7")
+                
+                # Using mutliple elifs for switch-case style logic should be avoided. You can use a dictionary instead. Something like this. 
+                # User inputs and printing could be encapsulated to another function.
+            
+                        invoice_options = {1: invoice_data.add_invoices(),
+                               2: invoice_data.add_invoice(),
+                               3: invoice_data.clear_invoices(),
+                               4: invoice_data.get_medium(),
+                               5: invoice_data.get_mean(),
+                               6: invoice_data.view_all(),
+                               7: exit()}
+            
+            output = invoice_options.get(option, raise_non_valid_option())
 
         except Exception as error:
             print(error)
