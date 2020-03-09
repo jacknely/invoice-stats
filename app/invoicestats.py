@@ -2,71 +2,82 @@ import math
 
 
 class InvoiceStats:
-    invoices = []
+
+    def __init__(self):
+        self.invoices = []
     
     def __len__(self):
         return len(self.invoices)
-     
-    # if you're gonna use typing than add the output   
-    @classmethod
-    def add_invoices(cls, invoices: str) -> Boolean:
+
+    def invoice_options(self, option):
+        invoice_options = {
+            1: self.add_invoices(),
+            2: self.add_invoice(),
+            3: self.clear_invoices(),
+            4: self.get_medium(),
+            5: self.get_mean(),
+            6: self.view_all(),
+            7: exit()
+        }
+
+        return invoice_options.get(option, self.raise_non_valid_option())
+
+    def add_invoices(self):
         """ method to add multiple invoice amounts and print to screen """
+        invoices = self.get_user_input()
         invoices = invoices.split(",")
-        invoices = [cls.check_format(invoice) for invoice in invoices]
-        invoices = [cls.check_value(invoice) for invoice in invoices]
-        cls.invoices = cls.invoices + invoices
-        print(cls.invoices)
+        invoices = [self.check_format(invoice) for invoice in invoices]
+        invoices = [self.check_value(invoice) for invoice in invoices]
+        self.invoices = self.invoices + invoices
+        print(self.invoices)
 
         return True
 
-    @classmethod
-    def add_invoice(cls, value: str):
+    def add_invoice(self):
         """ method to add single invoice amount and print to screen """
-        value = cls.check_format(value)
-        value = cls.check_value(value)
-        cls.invoices.append(value)
-        print(cls.invoices)
+        value = self.get_user_input()
+        value = self.check_format(value)
+        value = self.check_value(value)
+        self.invoices = self.invoices + value
+        print(self.invoices)
 
         return True
 
-    @classmethod
-    def clear_invoices(cls):
+    def clear_invoices(self):
         """ clear all stored invoices """
-        cls.invoices[:] = []
+        self.invoices[:] = []
 
         return True
 
-    @classmethod
-    def get_medium(cls):
+    def get_medium(self):
         """ prints the median of all stored invoice amounts """
-        # count is a shit name. anyway you should be using a dunder len on InvoiceStats.
-        
-        cls.invoices.sort()
-        if count % 2 == 0:
-            median1 = cls.invoices[len(self) // 2]
-            median2 = cls.invoices[count // 2 - 1]
+        self.invoices.sort()
+        if self.__len__ % 2 == 0:
+            median1 = self.invoices[self.__len__ // 2]
+            median2 = self.invoices[self.__len__ // 2 - 1]
             median = (median1 + median2) / 2
         else:
-            median = cls.invoices[count // 2]
-        rounded_median = cls.round_down(median, 2)
+            median = self.invoices[self.__len__ // 2]
+        rounded_median = self.round_down(median, 2)
 
         return rounded_median
 
-    @classmethod
-    def get_mean(cls):
+    def get_mean(self):
         """ gets the mean of all stores invoice amounts """
-        count = len(cls.invoices)
-        sum_values = sum(cls.invoices)
-        mean = sum_values / count
-        rounded_mean = cls.round_down(mean, 2)
+        sum_values = sum(self.invoices)
+        mean = sum_values / self.__len__
+        rounded_mean = self.round_down(mean, 2)
 
         return rounded_mean
 
-    @classmethod
-    def view_all(cls):
+    def view_all(self):
         """ prints all stored invoice amounts """
         print("\nCurrent saved invoice amounts:")
-        [print(f"  - {invoice:.2f}") for invoice in cls.invoices]
+        [print(f"  - {invoice:.2f}") for invoice in self.invoices]
+
+    @staticmethod
+    def get_user_input():
+        return input("enter a value:")
 
     @staticmethod
     def check_format(number: str):
@@ -97,3 +108,8 @@ class InvoiceStats:
         """ method for rounding down to a given number of decimal places """
         multiplier = 10 ** decimals
         return math.floor(n * multiplier) / multiplier
+
+    @staticmethod
+    def raise_non_valid_option():
+        raise ValueError(
+            'Please select a option between 1 and 7.')

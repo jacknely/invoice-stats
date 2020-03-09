@@ -11,11 +11,19 @@ def main():
           "  6. View all Invoices\n"
           "  7. Exit")
 
+    option = int(input("\nSelect an option: "))
+    invoice_data = InvoiceStats()
+    invoice_data.invoice_options(option)
+
+
+if __name__ == '__main__':
+    main()
+
+    """
+
     while True:
         try:
-            option = input("\nSelect an option: ")
-            option = int(option)
-            invoice_data = InvoiceStats()
+
 
             if option == 1:
                 value = input("\nInput a set of invoice amounts: ")
@@ -37,23 +45,4 @@ def main():
                 break
             else:
                 print("Not a valid option, please enter a number between 1 and 7")
-                
-                # Using mutliple elifs for switch-case style logic should be avoided. You can use a dictionary instead. Something like this. 
-                # User inputs and printing could be encapsulated to another function.
-            
-                        invoice_options = {1: invoice_data.add_invoices(),
-                               2: invoice_data.add_invoice(),
-                               3: invoice_data.clear_invoices(),
-                               4: invoice_data.get_medium(),
-                               5: invoice_data.get_mean(),
-                               6: invoice_data.view_all(),
-                               7: exit()}
-            
-            output = invoice_options.get(option, raise_non_valid_option())
-
-        except Exception as error:
-            print(error)
-
-
-if __name__ == '__main__':
-    main()
+            """
