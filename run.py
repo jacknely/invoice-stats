@@ -21,15 +21,13 @@ def main():
         5: invoice_data.get_mean,
         6: invoice_data.view_all,
     }
-    while True:
+    while (option := int(input("\nSelect an option: "))) != 7:
         try:
             option = int(input("\nSelect an option: "))
             if option == 1:
                 value = input("\nInput a set of invoice amounts: ")
             elif option == 2:
                 value = input("\nAdd a invoice amount: ")
-            elif option == 7:
-                break
             else:
                 value = None
             if output := invoice_options.get(option)(value)
