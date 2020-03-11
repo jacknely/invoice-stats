@@ -3,7 +3,9 @@ import pytest
 
 
 def test_input_2(mocker, capsys):
-    """ method for testing option 2: add single invoice from start menu """
+    """
+    method for testing option 2: add single invoice from start menu
+    """
     mocker.patch('builtins.input', side_effect=["2", "70.00", "7"])
     run.main()
     captured = capsys.readouterr()
@@ -12,7 +14,9 @@ def test_input_2(mocker, capsys):
 
 
 def test_input_1(mocker, capsys):
-    """ method for testing option 1: add multiple invoice from start menu """
+    """
+    method for testing option 1: add multiple invoice from start menu
+    """
     mocker.patch('builtins.input', side_effect=["1", "100.00, 20.54", "7"])
     run.main()
     captured = capsys.readouterr()
@@ -21,7 +25,9 @@ def test_input_1(mocker, capsys):
 
 
 def test_input_4(mocker, capsys):
-    """ method for testing option 4: get median from start menu """
+    """
+    method for testing option 4: get median from start menu
+    """
     mocker.patch('builtins.input', side_effect=["1", "100.00, 20.54", "4", "7"])
     run.main()
     captured = capsys.readouterr()
@@ -30,7 +36,9 @@ def test_input_4(mocker, capsys):
 
 
 def test_input_5(mocker, capsys):
-    """ method for testing option 5: get mean from start menu """
+    """
+    method for testing option 5: get mean from start menu
+    """
     mocker.patch('builtins.input', side_effect=["1", "100.00, 20.54", "5", "7"])
     run.main()
     captured = capsys.readouterr()
@@ -39,7 +47,9 @@ def test_input_5(mocker, capsys):
 
 
 def test_input_3(mocker, capsys):
-    """ method for testing option 3: clear from start menu """
+    """
+    method for testing option 3: clear from start menu
+    """
     mocker.patch('builtins.input', side_effect=["1", "100.00, 20.54", "3", "7"])
     run.main()
     captured = capsys.readouterr()
