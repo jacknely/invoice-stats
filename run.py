@@ -23,14 +23,13 @@ def main():
     }
     while (option := int(input("\nSelect an option: "))) != 7:
         try:
-            option = int(input("\nSelect an option: "))
             if option == 1:
                 value = input("\nInput a set of invoice amounts: ")
             elif option == 2:
                 value = input("\nAdd a invoice amount: ")
             else:
                 value = None
-            if output := invoice_options.get(option)(value)
+            if output := invoice_options.get(option)(value):
                 print(output)
         except TypeError:
             print("Ensure you have entered a number between 1 and 7")
