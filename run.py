@@ -11,38 +11,30 @@ def main():
           "  6. View all Invoices\n"
           "  7. Exit")
 
-    option = int(input("\nSelect an option: "))
     invoice_data = InvoiceStats()
-    invoice_data.invoice_options(option)
+
+    invoice_options = {
+        1: invoice_data.add_invoices,
+        2: invoice_data.add_invoice,
+        3: invoice_data.clear_invoices,
+        4: invoice_data.get_medium,
+        5: invoice_data.get_mean,
+        6: invoice_data.view_all,
+    }
+    while (option := int(input("\nSelect an option: "))) != 7:
+        try:
+            option = int(input("\nSelect an option: "))
+            if option == 1:
+                value = input("\nInput a set of invoice amounts: ")
+            elif option == 2:
+                value = input("\nAdd a invoice amount: ")
+            else:
+                value = None
+            if output := invoice_options.get(option)(value)
+                print(output)
+        except TypeError:
+            print("Ensure you have entered a number between 1 and 7")
 
 
 if __name__ == '__main__':
     main()
-
-    """
-
-    while True:
-        try:
-
-
-            if option == 1:
-                value = input("\nInput a set of invoice amounts: ")
-                invoice_data.add_invoices(value)
-            elif option == 2:
-                value = input("\nAdd a invoice amount: ")
-                invoice_data.add_invoice(value)
-            elif option == 3:
-                invoice_data.clear_invoices()
-            elif option == 4:
-                output = invoice_data.get_medium()
-                print(f"The median is: {output:.2f}")
-            elif option == 5:
-                output = invoice_data.get_mean()
-                print(f"The mean is: {output:.2f}")
-            elif option == 6:
-                invoice_data.view_all()
-            elif option == 7:
-                break
-            else:
-                print("Not a valid option, please enter a number between 1 and 7")
-            """
