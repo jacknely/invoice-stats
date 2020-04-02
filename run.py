@@ -23,7 +23,6 @@ def main():
     }
     while (option := int(input("\nSelect an option: "))) != 7:
         try:
-            option = int(input("\nSelect an option: "))
             if option == 1:
                 value = input("\nInput a set of invoice amounts: ")
             elif option == 2:
