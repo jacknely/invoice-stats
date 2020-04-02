@@ -30,4 +30,6 @@ jobs:
         pytest
     - name: Codecov
       uses: codecov/codecov-action@v1.0.6
+      with:
+        file: ./coverage.xml
         
