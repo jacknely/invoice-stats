@@ -2,14 +2,16 @@ from app.invoicestats import InvoiceStats
 
 
 def main():
-    print("\n"
-          "  1. Add Invoices (multiple comma separated)\n"
-          "  2. Add Invoice (single)\n"
-          "  3. Clear\n"
-          "  4. Get Median\n"
-          "  5. Get Mean\n"
-          "  6. View all Invoices\n"
-          "  7. Exit")
+    print(
+        "\n"
+        "  1. Add Invoices (multiple comma separated)\n"
+        "  2. Add Invoice (single)\n"
+        "  3. Clear\n"
+        "  4. Get Median\n"
+        "  5. Get Mean\n"
+        "  6. View all Invoices\n"
+        "  7. Exit"
+    )
 
     invoice_data = InvoiceStats()
 
@@ -35,5 +37,5 @@ def main():
             print("Ensure you have entered a number between 1 and 7")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

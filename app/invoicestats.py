@@ -2,7 +2,6 @@ import math
 
 
 class InvoiceStats:
-
     def __init__(self) -> None:
         self.invoices: list = []
 
@@ -15,8 +14,12 @@ class InvoiceStats:
         method to add multiple invoice amounts and print to screen
         """
         invoice_values = invoice_values.split(",")
-        invoice_values = [self.validate_format(invoice_value) for invoice_value in invoice_values]
-        invoice_values = [self.validate_value(invoice_value) for invoice_value in invoice_values]
+        invoice_values = [
+            self.validate_format(invoice_value) for invoice_value in invoice_values
+        ]
+        invoice_values = [
+            self.validate_value(invoice_value) for invoice_value in invoice_values
+        ]
         self.invoices = self.invoices + invoice_values
 
         return self.invoices
@@ -77,10 +80,12 @@ class InvoiceStats:
         split_number = str(number).split(".")
         if len(split_number) < 2:  # check for decimal
             raise ValueError(
-                f'{number} is not a valid input. Input should be to two decimal places.')
+                f"{number} is not a valid input. Input should be to two decimal places."
+            )
         elif len(split_number[1]) != 2:  # check for 2 significant figures
             raise ValueError(
-                f'{number} is not a valid input. Input should be to two decimal places.')
+                f"{number} is not a valid input. Input should be to two decimal places."
+            )
         else:
             return float(number)
 
@@ -91,10 +96,12 @@ class InvoiceStats:
         """
         if 200000 < number:
             raise ValueError(
-                f'{number} is not a valid input. Invoice amount must be less than 200,000 USD')
+                f"{number} is not a valid input. Invoice amount must be less than 200,000 USD"
+            )
         if number < 0:
             raise ValueError(
-                f'{number} is not a valid input. Invoice amount must be more than 0 USD')
+                f"{number} is not a valid input. Invoice amount must be more than 0 USD"
+            )
         return number
 
     @staticmethod
@@ -104,5 +111,3 @@ class InvoiceStats:
         """
         multiplier = 10 ** decimals
         return math.floor(n * multiplier) / multiplier
-
-

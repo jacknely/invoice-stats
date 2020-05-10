@@ -1,11 +1,12 @@
+![Python application](https://github.com/jacknely/invoicestats/workflows/Python%20application/badge.svg)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 # Invoice Stats
 Invoices are agreements to transfer money between companies. This is a python 
 class to aggregate and gather basic stats on the invoices processed.
 
 ## Requirements
 - Python 3.8
-- Pytest
-- Pytest-Mocker
 
 Install from requirements.txt
 
